@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Explore - Laiba’s Galaxy</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: sans-serif;
+      overflow-x: hidden;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    /* Stars background */
+    .stars, .stars2, .stars3 {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      z-index: -1;
+    }
+    .stars::after, .stars2::after, .stars3::after {
+      content: '';
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      background: white;
+      box-shadow: 
+        200px 100px white, 400px 300px white, 600px 200px white,
+        800px 500px white, 1000px 400px white, 1200px 600px white;
+      animation: twinkle 50s linear infinite;
+    }
+    @keyframes twinkle { 0% { transform: translateY(0); } 100% { transform: translateY(-1000px); } }
+
+    /* Dark purple glowy heading */
+    h1 {
+      font-size: 3em;
+      color: white;
+      text-shadow: 
+        0 0 10px #800080,
+        0 0 20px #800080,
+        0 0 30px #800080,
+        0 0 40px #800080;
+      margin-bottom: 20px;
+    }
+
+    /* Planet grid */
+    .planet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .planet {
+      background: rgba(255,255,255,0.05);
+      border: 2px solid #ff00de;
+      border-radius: 15px;
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      box-shadow: 0 0 10px #ff00de;
+    }
+    .planet:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px #ff00de, 0 0 40px #ff00de;
+    }
+    .planet img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      animation: rotatePlanet 20s linear infinite;
+    }
+    @keyframes rotatePlanet {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .planet h3 {
+      margin-top: 10px;
+      font-size: 1.5em;
+      text-shadow: 0 0 5px #ff00de;
+    }
+
+    /* Buttons */
+    .music-btn, .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 30px;
+      font-size: 1.2em;
+      font-weight: bold;
+      border-radius: 10px;
+      border: 2px solid #ff00de;
+      background: transparent;
+      color: #ff00de;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: 0.3s all ease;
+      box-shadow: 0 0 10px #ff00de;
+      text-decoration: none;
+    }
+    .music-btn:hover, .back-btn:hover {
+      background: #ff00de;
+      color: black;
+      box-shadow: 0 0 20px #ff00de, 0 0 40px #ff00de;
+    }
+  </style>
+</head>
+<body>
+  <!-- Stars -->
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+
+  <h1>Explore the Galaxy</h1>
+
+  <div class="planet-grid">
+    <div class="planet">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" alt="Earth">
+      <h3>Earth</h3>
+      <p>Our beautiful home planet, full of life and diversity.</p>
+    </div>
+    <div class="planet">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" alt="Mars">
+      <h3>Mars</h3>
+      <p>The red planet, with dusty deserts and frozen poles.</p>
+    </div>
+    <div class="planet">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_during_Equinox.jpg" alt="Saturn">
+      <h3>Saturn</h3>
+      <p>The ringed giant, a jewel in our solar system.</p>
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <button class="music-btn" onclick="playMusic()">Play Space Music</button>
+  <a href="index.html" class="back-btn">Back to Home</a>
+
+  <!-- Music -->
+  <audio id="spaceMusic" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    function playMusic() {
+      const music = document.getElementById('spaceMusic');
+      music.play();
+    }
+  </script>
+</body>
+</html>
